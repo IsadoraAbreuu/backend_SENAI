@@ -6,8 +6,10 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
+
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter
+from .filters import AutoFilter
 
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
@@ -28,10 +30,11 @@ def visualizacao_autor(request):
 class AutoresView(ListCreateAPIView):
     queryset = Autor.objects.all()
     serializer_class = AutorSerializers
-    permission_classes = [IsAuthenticated]
+    #permission_classes = [IsAuthenticated]
     filter_backends = [DjangoFilterBackend, SearchFilter]
     filterset_fields = ['id']
-    search_fields = ['nome']
+    search_fields = ['nome, sobrenome']
+    filterset_class = AutoFilter
 
 class AutoresDetailView(RetrieveUpdateDestroyAPIView):
     queryset = Autor.objects.all()

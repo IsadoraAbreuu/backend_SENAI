@@ -29,9 +29,9 @@ class Livro(models.Model):
     autor = models.ForeignKey(Autor, on_delete=models.CASCADE)
     editora = models.ForeignKey(Editora, on_delete=models.CASCADE)
     isbn = models.CharField(max_length=50)
-    descricao = models.TextField
+    descricao = models.TextField()
     idioma = models.CharField(default="Português")
-    ano_publicacao = models.IntegerField()
+    ano = models.IntegerField()
     paginas = models.IntegerField()
     preco = models.DecimalField(max_digits=10, decimal_places=2)
     estoque = models.IntegerField()
