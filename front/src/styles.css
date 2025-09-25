@@ -1,16 +1,1 @@
 /* You can add global styles to this file, and also import other style files */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* importando a fonte do google fontes */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');  
-
-
-/* Definindo a fonte global */
-html {
-    font-family: 'Montserrat';
-    font-family: 'Roboto', sans-serif;
-}
