@@ -1,15 +1,15 @@
 import { Component, inject, signal } from '@angular/core';
-import { Router } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 import { AuthService } from '../../services/auth.services';
-import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
+import {ReactiveFormsModule, FormBuilder, Validators} from '@angular/forms'
 
 @Component({
   selector: 'app-login.component',
-  imports: [],
+  imports: [RouterLink, ReactiveFormsModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
+export class LoginComponent { 
   private fb = inject(FormBuilder)
   private auth = inject(AuthService)
   private router = inject(Router)
@@ -19,27 +19,28 @@ export class LoginComponent {
 
   form = this.fb.group({
     username: ['', [Validators.required]],
-    password: ['', Validators.required],
+    password: ['', [Validators.required]],
   })
 
   onSubmit(){
     if (this.form.invalid) return
+
     this.loading.set(true)
     this.error.set(null)
+    
+    const {username, password} = this.form.value as {username: string; password: string}
 
-    const {username, password} = this.form.value as {username: string, password: string}
-
-    this.auth.login(username, password).subscribe ({
-      next: ()=> {
+    this.auth.login(username, password).subscribe({
+      next: ()=>{
         this.loading.set(false)
-        this.router.navigateByUrl('/home')
+        this.router.navigateByUrl("/home")
       },
-      error:(e)=> {
+      error: (e)=>{
         this.loading.set(false)
-        this.error.set("Usuário ou senha inválido")
+        this.error.set("Usuário ou senha inválido...")
         console.error(e);
+                
       }
     })
   }
-
 }

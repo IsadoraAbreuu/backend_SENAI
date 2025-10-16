@@ -8,8 +8,8 @@ from rest_framework import status
 from rest_framework.permissions import IsAuthenticated
 
 from django_filters.rest_framework import DjangoFilterBackend
-from rest_framework.filters import SearchFilter
-from .filters import AutoFilter
+from rest_framework.filters import SearchFilter, OrderingFilter
+from .filters import LivroFilter
 
 @api_view(['GET', 'POST'])
 @permission_classes([IsAuthenticated])
@@ -31,10 +31,7 @@ class AutoresView(ListCreateAPIView):
     queryset = Autor.objects.all()
     serializer_class = AutorSerializers
     #permission_classes = [IsAuthenticated]
-    filter_backends = [DjangoFilterBackend, SearchFilter]
-    filterset_fields = ['id']
-    search_fields = ['nome, sobrenome']
-    filterset_class = AutoFilter
+    
 
 class AutoresDetailView(RetrieveUpdateDestroyAPIView):
     queryset = Autor.objects.all()
@@ -54,9 +51,12 @@ class EditorasDetailView(RetrieveUpdateDestroyAPIView):
 
 #---------------- LIVROS --------------------
 class LivrosView(ListCreateAPIView):
-    queryset = Livro.objects.all()
+    queryset = Livro.objects.all().select_related('autor').order_by('id')
     serializer_class = LivroSerializers
-    #permission_classes = [IsAuthenticated]
+    filter_backends = [DjangoFilterBackend, SearchFilter, OrderingFilter]
+    filterset_class = LivroFilter
+    search_fields = ['titulo', 'autor__nome', 'autor__sobrenome']
+    ordering_fields = ['id', 'titulo']
 
 class LivrosDetailView(RetrieveUpdateDestroyAPIView):
     queryset = Livro.objects.all()
