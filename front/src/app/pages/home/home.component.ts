@@ -5,10 +5,11 @@ import { RouterLink } from "@angular/router";
     selector:'app-home',
     standalone: true,
     imports: [RouterLink],
+    styleUrls: ['./home.component.css'],
      template: `
     <section style="max-width:900px;margin:2rem auto;padding:0 1rem">
-      <h1 style="margin:0 0 .75rem">Bem-vindo</h1>
-      <p>Esta é a página inicial.</p>
+      <h1 style="margin:0 0 .75rem">Bem-vindo !</h1>
+      <p>Escolha o que deseja fazer:</p>
 
       <nav style="margin-top:1rem; display:flex; gap:.75rem">
         <a routerLink="autores">Ver autores</a>

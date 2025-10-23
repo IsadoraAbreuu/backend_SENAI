@@ -7,16 +7,19 @@ import { AuthService } from '../../services/auth.services';
 @Component({
   standalone: true,
   imports: [RouterLink],
+  styleUrls: ['/editoras.component.css'],
   template: `
-    <section style="max-width:900px;margin:2rem auto;padding:0 1rem">
+    <section style="margin:2rem auto;padding:0 1rem">
       <h1>Editoras</h1>
+
+      <a routerLink="/">Voltar ao início</a>
 
       @if (carregando()) {
         <p>Carregando…</p>
       } @else if (erro()) {
         <p style="color:#c62828">{{ erro() }}</p>
       } @else {
-        <ul style="padding-left:1.25rem">
+        <ul>
           @for (a of editoras(); track a.id) {
             <li style="margin:.25rem 0">
               <strong>{{ a.editora }} {{ a.cnpj }}</strong>
@@ -28,10 +31,6 @@ import { AuthService } from '../../services/auth.services';
           }
         </ul>
       }
-
-      <nav style="margin-top:1rem">
-        <a routerLink="/">Voltar ao início</a>
-      </nav>
     </section>
   `
 })

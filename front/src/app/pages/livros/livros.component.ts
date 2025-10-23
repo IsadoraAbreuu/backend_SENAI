@@ -7,9 +7,12 @@ import { AuthService } from '../../services/auth.services';
 @Component({
   standalone: true,
   imports: [RouterLink],
+  styleUrls: ['/livros.component.css'],
   template: `
-    <section style="max-width:900px;margin:2rem auto;padding:0 1rem">
+    <section style="margin:2rem 0;padding:0 1rem">
       <h1>Livros</h1>
+
+      <a routerLink="/">Voltar ao início</a>
 
       @if (carregando()) {
         <p>Carregando…</p>
@@ -37,10 +40,6 @@ import { AuthService } from '../../services/auth.services';
           }
         </ul>
       }
-
-      <nav style="margin-top:1rem">
-        <a routerLink="/">Voltar ao início</a>
-      </nav>
     </section>
   `
 })

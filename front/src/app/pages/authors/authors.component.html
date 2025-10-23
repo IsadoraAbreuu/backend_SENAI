@@ -1,12 +1,14 @@
-<section style="max-width:900px;margin:2rem auto;padding:0 1rem">
+<section style="margin:2rem 0;padding:0 1rem">
       <h1>Autores</h1>
+
+      <a routerLink="/">Voltar ao início</a>
 
       @if (carregando()) {
         <p>Carregando…</p>
       } @else if (erro()) {
         <p style="color:#c62828">{{ erro() }}</p>
       } @else {
-        <ul style="padding-left:1.25rem">
+        <ul>
           @for (a of autores(); track a.id) {
             <li style="margin:.25rem 0">
               <strong>{{ a.nome }} {{ a.sobrenome }}</strong>
@@ -18,7 +20,5 @@
         </ul>
       }
 
-      <nav style="margin-top:1rem">
-        <a routerLink="/">Voltar ao início</a>
-      </nav>
+
     </section>

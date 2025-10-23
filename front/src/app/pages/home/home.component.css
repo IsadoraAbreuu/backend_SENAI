@@ -1,0 +1,58 @@
+/* Estilo geral do container */
+section {
+  max-width: 900px;
+  margin: 2rem auto;
+  padding: 1rem;
+  border-radius: 10px; 
+}
+
+/* Título principal */
+h1 {
+  font-size: 3rem;
+  color: #24941c;
+  margin: 0 0 1rem;
+  text-align: center;
+  letter-spacing: 2px;
+  font-weight: bold;
+}
+
+/* Parágrafo */
+p {
+  font-size: 1.2rem;
+  color: #000000;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Estilo de navegação */
+nav {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+/* Links da navegação */
+a {
+  font-size: 1.2rem;
+  text-decoration: none;
+  color: #24941c; 
+  letter-spacing: 1px;
+  padding: 10px 20px;
+  border: 2px solid #24941c;
+  border-radius: 20px;
+  transition: background-color 0.3s, color 0.3s;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); 
+}
+
+/* Efeito ao passar o mouse sobre os links */
+a:hover {
+  background-color: #35671c;
+  color: #ffffff; 
+  transform: translateY(-2px);
+}
+
+/* Efeito de foco no link */
+a:focus {
+  outline: none;
+  box-shadow: 0 0 10px rgba(34, 104, 38, 0.7); 
+}
